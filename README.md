@@ -1,50 +1,78 @@
 # Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## start up app
 
-## Get started
+[connection-issue] https://docs.expo.dev/develop/development-builds/development-workflows/
 
-1. Install dependencies
+## routing for user based application
 
-   ```bash
-   npm install
-   ```
+### splash screen and route set up
 
-2. Start the app
+// if there is a database
 
-   ```bash
-    npx expo start
-   ```
+- bookings
+- checkout
+- properties
+- reviews
+- rentals
 
-In the output, you'll find options to open the app in a
+//role based interessting
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- favorites
+- profile
+  // want is favorited
+- properties
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+[stack] https://docs.expo.dev/router/advanced/stack/
 
-## Get a fresh project
+app/\_layout includ the routes. can push multiple screens. basic is the tabs
+we get a theme provider aswell
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+```tsx
+<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+  <Stack
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: '#f4511e',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}
+  >
+    <Stack.Screen name='(tabs)' options={{ headerShown: true }} />
+    <Stack.Screen name='+not-found' />
+  </Stack>
+</ThemeProvider>
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+index.tsx
 
-## Learn more
+```tsx
+export default function HomeScreen() {
+  return (
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerImage={
+        <Image
+          source={require('@/assets/images/partial-react-logo.png')}
+          style={styles.reactLogo}
+        />
+      }
+    ></ParallaxScrollView>
+  )
+}
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## i dunno look db. mb ignore
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## profile for the array with user is the most important
 
-## Join the community
+## search load \* times
 
-Join our community of developers creating universal apps.
+## articles in page where load \* times
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## functionality favorite no load
+
+## when and where
