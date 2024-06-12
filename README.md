@@ -6,7 +6,7 @@
 
 ## routing for user based application
 
-### splash screen and route set up (mb already done)
+### splash screen and route set up
 
 #### share modal on screens
 
@@ -138,6 +138,40 @@ export default function HomeScreen() {
   )
 }
 ```
+
+#### nested navigation
+
+index.tsx
+
+```tsx
+import { Link } from 'expo-router'
+
+return (
+  <Link href='/(tabs)/(home)/1337'>
+    <Text>to detail</Text>
+  </Link>
+)
+////{pathname: '/(tabs)/(home)/1337', params:{Details:1337}}
+```
+
+[Details].tsx
+
+```tsx
+import React from 'react'
+import { Button, Text, Image, StyleSheet, View } from 'react-native'
+
+const Details = () => {
+  return (
+    <View>
+      <Text>Details</Text>
+    </View>
+  )
+}
+
+export default Details
+```
+
+#### basic auth
 
 #### add the screens
 

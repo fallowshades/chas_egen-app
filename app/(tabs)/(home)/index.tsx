@@ -2,7 +2,7 @@ import { HelloWave } from '@/components/HelloWave'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import { Stack } from 'expo-router'
 import { Button, Text, Image, StyleSheet } from 'react-native'
-
+import { Link } from 'expo-router'
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
@@ -13,10 +13,14 @@ export default function HomeScreen() {
           style={styles.reactLogo}
         />
       }
-    ></ParallaxScrollView>
+    >
+      <Link href='/(tabs)/(home)/1337'>
+        <Text>to detail</Text>
+      </Link>
+    </ParallaxScrollView>
   )
 }
-
+//{pathname: '/(tabs)/(home)/1337', params:{Details:1337}}
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
