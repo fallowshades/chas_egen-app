@@ -44,6 +44,8 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+        <Stack.Screen name='Modal' options={{ presentation: 'modal' }} />
+
         <Stack.Screen name='+not-found' />
       </Stack>
     </ThemeProvider>
