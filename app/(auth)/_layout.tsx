@@ -31,24 +31,21 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name='(home)'
+        name='Login'
         options={{
-          title: 'Home',
+          title: 'Login',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? 'home' : 'home-outline'}
               color={color}
             />
           ),
-          headerRight: () => (
-            <Button title='Modal' onPress={() => router.push('/Modal')} />
-          ),
         }}
       />
       <Tabs.Screen
-        name='Profile'
+        name='Register'
         options={{
-          title: 'profiles',
+          title: 'Register',
           headerShown: true,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
