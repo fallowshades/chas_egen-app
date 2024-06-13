@@ -14,7 +14,7 @@ import ProductsList from './ProductsList'
 export default function ProductsContainer({ data }: any) {
   const [layout, setLayout] = useState<string>('grid')
   const totalProducts = data?.meta.pagination.total || {}
-  console.log('ProductsContainer.tsx', data)
+  //console.log('ProductsContainer.tsx', data)
 
   const renderItem = ({ item }: any) => (
     // layout === 'grid' ? (
@@ -32,7 +32,7 @@ export default function ProductsContainer({ data }: any) {
     )
   }
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.header}>
         <Text style={styles.headerText}>
           {totalProducts} product{totalProducts > 1 && 's'}
@@ -55,13 +55,14 @@ export default function ProductsContainer({ data }: any) {
       </View>
 
       {/* PRODUCTS */}
-      <View style={styles.productList}>
+
+      <View>
         {totalProducts === 0 ? (
           <Text style={styles.noProductsText}>
             Sorry, no products matched your search...
           </Text>
         ) : layout === 'grid' ? (
-          <ProductsGrid items={data} />
+          <ProductsGrid items={data.data} />
         ) : (
           <ProductsList />
         )}
@@ -71,10 +72,6 @@ export default function ProductsContainer({ data }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -94,16 +91,13 @@ const styles = StyleSheet.create({
   button: {
     marginLeft: 8,
     padding: 8,
-    backgroundColor: '#f4511e',
-    borderRadius: 4,
     color: 'white',
   },
-  activeButton: {
-    backgroundColor: '#ff6e40',
-  },
+  activeButton: { backgroundColor: '#add8e6' },
   productList: {
     flex: 1,
     marginTop: 8,
+    rowGap: 16,
   },
   noProductsText: {
     fontSize: 18,

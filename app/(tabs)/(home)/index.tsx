@@ -1,10 +1,23 @@
 import { HelloWave } from '@/components/HelloWave'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import { Stack } from 'expo-router'
-import { Button, Text, Image, StyleSheet, View } from 'react-native'
+import {
+  Button,
+  Text,
+  Image,
+  StyleSheet,
+  View,
+  Animated,
+  SafeAreaView,
+} from 'react-native'
 import { Link } from 'expo-router'
+import React from 'react'
 //import Filters from '@/components/all/Filters'
-import { Filters, ProductsContainer } from '@/components/all'
+import {
+  Filters,
+  PaginationContainer,
+  ProductsContainer,
+} from '@/components/all'
 import { useProductsQuery } from '@/hooks/useProductsQuery'
 export default function HomeScreen() {
   const { data, error, isLoading } = useProductsQuery({})
@@ -16,9 +29,23 @@ export default function HomeScreen() {
   if (error) {
     return <Text>Error: {error.message}</Text>
   }
-  console.log(data, 'index.tsx')
+  //console.log(data, 'index.tsx')
+  const scrollY = React.useRef(new Animated.Value(0)).current
   return (
-    <ParallaxScrollView
+    <SafeAreaView>
+      <Animated.View
+        style={{
+          height: 200,
+          transform: [{ translateY: Animated.multiply(scrollY, -0.5) }],
+          zIndex: 10,
+        }}
+      >
+        <Image
+          source={require('@/assets/images/partial-react-logo.png')}
+          style={styles.reactLogo}
+        />
+      </Animated.View>
+      {/**<ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
       headerImage={
         <Image
@@ -27,14 +54,16 @@ export default function HomeScreen() {
         />
       }
     >
+       </ParallaxScrollView> */}
       <View style={styles.container}>
         <Link href='/(tabs)/(home)/1337'>
           <Text>to detail</Text>
         </Link>
         <Filters />
         <ProductsContainer data={data} />
+        <PaginationContainer />
       </View>
-    </ParallaxScrollView>
+    </SafeAreaView>
   )
 }
 //{pathname: '/(tabs)/(home)/1337', params:{Details:1337}}

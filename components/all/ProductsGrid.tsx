@@ -1,42 +1,32 @@
-// SignsGrid.js
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   View,
   Text,
-  Image,
-  StyleSheet,
   FlatList,
+  StyleSheet,
   TouchableOpacity,
+  Image,
+  ScrollView,
 } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 
 const ProductGrid = ({ items }: any) => {
-  const navigation = useNavigation()
-  console.log(items)
-
+  // Debugging output
   const renderProduct = ({ item }: any) => {
     const { id, attributes } = item
     const { title, price, image } = attributes
-    console.log(item)
+
     return (
-      <View key={id} style={styles.card}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('SignDetails', { id })}
-          style={styles.cardTouchable}
-        >
+      <View style={styles.card}>
+        <TouchableOpacity style={styles.cardTouchable}>
           <Image source={{ uri: image }} style={styles.image} />
           <View style={styles.cardBody}>
             <Text style={styles.cardTitle}>{title}</Text>
-            <Text style={styles.price}>{price}</Text>
+            <Text style={styles.price}>${price}</Text>
           </View>
         </TouchableOpacity>
-        {/** 
-        <TouchableOpacity
-          onPress={() => navigation.navigate('EditSign', { id })}
-          style={styles.editButton}
-        >
+        <TouchableOpacity style={styles.editButton}>
           <Text style={styles.buttonText}>Edit</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
     )
   }
@@ -59,8 +49,11 @@ const ProductGrid = ({ items }: any) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     padding: 12,
+  },
+  list: {
+    justifyContent: 'space-between',
   },
   card: {
     flex: 1,
@@ -103,6 +96,17 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 16,
+  },
+  noProductsText: {
+    fontSize: 18,
+    marginTop: 16,
+    textAlign: 'center',
+  },
+  debugText: {
+    fontSize: 16,
+    color: 'red',
+    textAlign: 'center',
+    marginVertical: 10,
   },
 })
 

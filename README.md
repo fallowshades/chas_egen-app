@@ -314,7 +314,7 @@ return <AuthProvider></AuthProvider>
 
 ### render items
 
-#### flat list in paralax view
+#### flat list in ParallaxScrollView is erronouse
 
 \_layout.tsx
 
@@ -729,6 +729,87 @@ const styles = StyleSheet.create({
 })
 
 export default ProductGrid
+```
+
+####
+
+(tabs)\(home)\index.tsx
+
+```tsx
+import {
+ ...
+  Animated,
+  SafeAreaView,
+} from 'react-native'
+
+import {
+  ...
+  ProductsContainer,
+} from '@/components/all'
+
+export default function HomeScreen() {
+
+    const scrollY = React.useRef(new Animated.Value(0)).current
+   return (
+    <SafeAreaView>
+      <Animated.View
+        style={{
+          height: 200,
+          transform: [{ translateY: Animated.multiply(scrollY, -0.5) }],
+          zIndex: 10,
+        }}
+      >
+        <Image
+          source={require('@/assets/images/partial-react-logo.png')}
+          style={styles.reactLogo}
+        />
+      </Animated.View>
+      ...
+        </SafeAreaView>
+
+  )
+}
+```
+
+ProductsContainer.tsx
+
+- context would make this so much easier. or just not name the data with meta and data as data
+
+```tsx
+return <ProductsGrid items={data.data} />
+const styles = StyleSheet.create({
+  activeButton: { backgroundColor: '#add8e6' },
+})
+```
+
+ProductsGrid.tsx
+
+- i did a lot of stupi shit like removing on press flex 1 and debugg and stuff
+
+```tsx
+import React, { useEffect } from 'react'
+import {
+  ...
+  StyleSheet,
+  ...
+  Image,
+  ScrollView,
+} from 'react-native'
+
+const ProductGrid = ({ items }: any) => {
+...
+
+    return(
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // flex: 1,
+    padding: 12,
+  },
+})
 ```
 
 ## articles in page where load \* times
