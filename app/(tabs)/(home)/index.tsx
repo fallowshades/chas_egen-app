@@ -1,6 +1,3 @@
-import { HelloWave } from '@/components/HelloWave'
-import ParallaxScrollView from '@/components/ParallaxScrollView'
-import { Stack } from 'expo-router'
 import {
   Button,
   Text,
@@ -57,7 +54,7 @@ export default function HomeScreen() {
        </ParallaxScrollView> */}
       <View style={styles.container}>
         <Link href='/(tabs)/(home)/1337'>
-          <Text>to detail</Text>
+          <Text>to detail no product</Text>
         </Link>
         <Filters />
         <ProductsContainer data={data} />

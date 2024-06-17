@@ -45,8 +45,8 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name='Profile'
+      {/* <Tabs.Screen
+        name='(features)/Favorites'
         options={{
           title: 'profiles',
           headerShown: true,
@@ -60,7 +60,7 @@ export default function TabLayout() {
             <Button title='Modal' onPress={() => router.push('/Modal')} />
           ),
         }}
-      />
+      /> */}
     </Tabs>
   )
 }

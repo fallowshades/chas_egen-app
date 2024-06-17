@@ -812,6 +812,30 @@ const styles = StyleSheet.create({
 })
 ```
 
+####
+
+app\(tabs)\(home)\_layout.tsx
+
+- remove --> uniqe history for products and id
+
+```tsx
+ <Stack.Screen name='Favorites' />
+      <Stack.Screen name='Profiles' />
+```
+
+app\(tabs)\(home)\Favorites.tsx
+app\(tabs)\(home)\index.tsx
+app\(tabs)\(home)\Profiles.tsx
+app\(tabs)\Profile.tsx
+
+- i get errors removing pages.. dont change
+
+app\(tabs)\_layout.tsx
+
+components\aoo\Product.tsx
+
+component\ProductGrid.tsx
+
 ## articles in page where load \* times
 
 ## functionality favorite no load
