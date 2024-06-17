@@ -1,6 +1,29 @@
 export const signUrl = 'signs'
 export const PRODUCT_URL = 'products'
 
+export const static_ID_Data = {
+  data: {
+    id: 19,
+    attributes: {
+      title: 'avant-garde lamp',
+      company: 'Modenza',
+      description:
+        'Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge',
+      featured: true,
+      createdAt: '2023-08-10T10:07:41.876Z',
+      updatedAt: '2023-08-10T10:16:43.298Z',
+      publishedAt: '2023-08-10T10:07:44.157Z',
+      category: 'Kids',
+      image:
+        'https://images.pexels.com/photos/943150/pexels-photo-943150.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      price: '17999',
+      shipping: false,
+      colors: ['#33FF57', '#3366FF'],
+    },
+  },
+  meta: {},
+}
+
 export const static_Data = {
   data: [
     {

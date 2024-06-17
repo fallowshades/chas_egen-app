@@ -13,10 +13,15 @@ export const customFetchBasically = async (url: string, options: any) => {
   return response.data
 }
 import { static_Data } from '@/utils/constants'
+import { static_ID_Data } from '@/utils/constants'
 
 export const convenientFetchBasically = async (url: string, options: any) => {
   //const response = await axios.get(url, options)
   return static_Data
+}
+
+export const convenientIdFetchBasically = async (id: any) => {
+  return static_ID_Data
 }
 
 export type ProductsList = {

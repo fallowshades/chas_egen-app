@@ -836,6 +836,115 @@ components\aoo\Product.tsx
 
 component\ProductGrid.tsx
 
+####
+
+api\products\index.ts
+
+```tsx
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import {
+  customFetchBasically,
+  convenientFetchBasically,
+  convenientIdFetchBasically,
+} from '@/utils/customFetch'
+import { PRODUCT_URL } from '@/utils/constants'
+import { customFetch } from '@/utils/customFetch'
+
+import { static_ID_Data } from '@/utils/constants'
+
+export const useProduct = (id: number) => {
+  const fetchAPI = false
+
+  if (!fetchAPI) {
+    return static_ID_Data
+  }
+  return useQuery({
+    queryKey: ['product', id],
+    queryFn: async () => {
+      const { data, error } = await customFetch(`${PRODUCT_URL}/${id}`)
+
+      if (error) {
+        return static_ID_Data
+      }
+      return data
+    },
+    enabled: !!id, // Ensure the query runs only if id is available
+  })
+}
+```
+
+- COPY constants.tsx (practice data)
+
+customFetch.tsx
+
+```tsx
+import { static_ID_Data } from '@/utils/constants'
+export const convenientIdFetchBasically = async (id: any) => {
+  return static_ID_Data
+}
+```
+
+[id].tsx
+
+```tsx
+import React from 'react'
+import { Button, Text, Image, StyleSheet, View } from 'react-native'
+import { useProduct } from '@/api/products'
+import { useLocalSearchParams } from 'expo-router'
+
+import Product from '@/components/all/Product'
+const Details = () => {
+  const { id: idString } = useLocalSearchParams()
+  const id = idString
+    ? parseFloat(typeof idString === 'string' ? idString : idString[0])
+    : NaN
+  console.log('details', id)
+  const { data: product, error, isLoading } = useProduct(id)
+  console.log('details', product)
+
+  if (isLoading) {
+    return <Text>Loading...</Text>
+  }
+
+  if (error) {
+    return <Text>Error: {error.message}</Text>
+  }
+
+  if (!product) {
+    return <Text>No product found</Text>
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.cardTitle}>Details</Text>
+      <Product item={product.data} />
+    </View>
+  )
+}
+
+export default Details
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'gray',
+    flex: 1,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+})
+```
+
+Product.tsx
+
+```tsx
+ onPress={() => {
+            console.log('Navigating to:', `/${segments[0]}/(home)/${id}`)
+          }}
+```
+
 ## articles in page where load \* times
 
 ## functionality favorite no load

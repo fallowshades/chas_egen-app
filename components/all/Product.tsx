@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import React from 'react'
 import { Link, useSegments } from 'expo-router'
+import { useNavigation } from '@react-navigation/native'
 export default function Product({ item }: any) {
   const segments = useSegments()
   console.log(segments[0])
@@ -15,18 +16,27 @@ export default function Product({ item }: any) {
   const { title, price, image } = attributes
 
   return (
-    <View style={styles.card}>
-      <TouchableOpacity style={styles.cardTouchable}>
-        <Image source={{ uri: image }} style={styles.image} />
-        <View style={styles.cardBody}>
-          <Text style={styles.cardTitle}>{title}</Text>
-          <Text style={styles.price}>${price}</Text>
-        </View>
-      </TouchableOpacity>
-      <Link href={`/${segments[0]}/(home)/${id}`} style={styles.editButton}>
-        <Text style={styles.buttonText}>detail</Text>
-      </Link>
-    </View>
+    <>
+      <View style={styles.card}>
+        <TouchableOpacity style={styles.cardTouchable}>
+          <Image source={{ uri: image }} style={styles.image} />
+          <View style={styles.cardBody}>
+            <Text style={styles.cardTitle}>{title}</Text>
+            <Text style={styles.price}>${price}</Text>
+          </View>
+        </TouchableOpacity>
+        <Link
+          href={`/${segments[0]}/(home)/${id}`}
+          style={styles.editButton}
+          asChild
+          onPress={() => {
+            console.log('Navigating to:', `/${segments[0]}/(home)/${id}`)
+          }}
+        >
+          <Text style={styles.buttonText}>detail</Text>
+        </Link>
+      </View>
+    </>
   )
 }
 
