@@ -28,3 +28,23 @@ export const useProduct = (id: number) => {
     enabled: !!id, // Ensure the query runs only if id is available
   })
 }
+
+export const useProducts = (id: number) => {
+  const fetchAPI = false
+
+  if (!fetchAPI) {
+    return static_ID_Data
+  }
+  return useQuery({
+    queryKey: ['product', id],
+    queryFn: async () => {
+      const { data, error } = await customFetch(`${PRODUCT_URL}/${id}`)
+
+      if (error) {
+        return static_ID_Data
+      }
+      return data
+    },
+    enabled: !!id, // Ensure the query runs only if id is available
+  })
+}

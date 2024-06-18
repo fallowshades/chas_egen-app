@@ -947,6 +947,10 @@ Product.tsx
 
 ## articles in page where load \* times
 
+```sh
+npx expo install @react-native-picker/picker
+```
+
 ## functionality favorite no load
 
 ## when and where

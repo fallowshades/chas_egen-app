@@ -21,8 +21,12 @@ const Details = () => {
     return <Text>Error: {error.message}</Text>
   }
 
-  if (!product) {
-    return <Text>No product found</Text>
+  if (!product?.data) {
+    return (
+      <View style={styles.container}>
+        <Text>No product found</Text>
+      </View>
+    )
   }
 
   return (
